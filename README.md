@@ -22,12 +22,11 @@ Vue.use(VueBarcodeScanner)
 
 Inject with option
 ```javascript
-// inject with option (add sound)
+// inject barcode scanner with option (add sound effect)
 // sound will trigger when it's already scanned
-// sound setting is false
 let options = {
   sound: true, // default is false
-  soundSrc : '/static/sound.wav'
+  soundSrc : '/static/sound.wav' // default is blank
 }
 
 Vue.use(VueBarcodeScanner, options)
