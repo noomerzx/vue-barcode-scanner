@@ -13,7 +13,19 @@ import VueBarcodeScanner from 'vue-barcode-scanncer'
 
 ...
 
+// inject vue barcode scanner
 Vue.use(VueBarcodeScanner)
+
+// inject with option (add sound)
+// sound will trigger when it's already scanned
+// sound setting is false
+let options = {
+  sound: true, // default is false
+  soundSrc : '/static/sound.wav'
+}
+
+Vue.use(VueBarcodeScanner, options)
+
 ```
 ----------------------------------------
 ## Methods
@@ -25,7 +37,7 @@ this.$barcodeScanner.init(this.onBarcodeScanned)
 ```
 
 ### destroy
-Destroy method is for remove the listent when it's unnessessary
+Destroy method is for remove the listener when it's unnessessary
 
 ```javascript
 this.$barcodeScanner.destroy()
