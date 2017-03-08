@@ -3,7 +3,7 @@
 Barcode Scanner Plugin for Vue.js
 ## Requirement
 * vue
-
+----------------------------------------
 ## Initiate
 Initiate plugin by ```Vue.use``` then initial the plugin in your component that need to use barcode scanner
 
@@ -15,7 +15,7 @@ import VueBarcodeScanner from 'vue-barcode-scanncer'
 
 Vue.use(VueBarcodeScanner)
 ```
-
+----------------------------------------
 ## Methods
 ### init
 Init method use for add event listener (keydown) for the scanner
@@ -30,7 +30,7 @@ Destroy method is for remove the listent when it's unnessessary
 ```javascript
 this.$barcodeScanner.destroy()
 ```
-
+----------------------------------------
 ## Usage
 In your component file (.vue)
 
