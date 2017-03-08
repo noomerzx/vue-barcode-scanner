@@ -1,5 +1,5 @@
 # Vue Barcode Scanner
-=====================
+============
 Barcode Scanner Plugin for Vue.js
 ## Requirement
 * vue
@@ -37,15 +37,15 @@ In your component file (.vue)
 ```javascript
   export default {
     created () {
-      // add barcode scan listener and pass the callback function
-      this.$barcodeScanner.init(this.onBarcodeScanned)
+      // Add barcode scan listener and pass the callback function
+      this.$barcodeScanner.init(callbackFunction)
     },
     destroyed () {
-      // remove listener when component is destroyed
+      // Remove listener when component is destroyed
       this.$barcodeScanner.destroy()
     },
     methods: {
-      // create callback function to received barcode when the scanner is already done
+      // Create callback function to received barcode when the scanner is already done
       onBarcodeScanned (barcode) {
         console.log(barcode)
         // do something...

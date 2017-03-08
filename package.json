@@ -1,0 +1,16 @@
+{
+  "name": "vue-barcode-scanner",
+  "version": "0.0.1",
+  "description": "Barcode Scanner Plugin for Vue.js",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noomerzx/vue-barcode-scanner"
+  },
+  "author": "Wisarut Phuvanantanond <noomerzx@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noomerzx/vue-barcode-scanner/issues"
+  },
+  "homepage": "https://github.com/noomerzx/vue-barcode-scanner"
+}
