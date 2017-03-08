@@ -71,4 +71,4 @@ const VueBarcodeScanner = {
 //   window.Vue.use(MyPlugin)
 // }
 
-export default VueBarcodeScanner
+module.exports = VueBarcodeScanner
