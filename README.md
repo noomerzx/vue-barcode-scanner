@@ -39,7 +39,7 @@ Vue.use(VueBarcodeScanner, options)
 Init method use for add event listener (keydown) for the scanner
 
 ```javascript
-this.$barcodeScanner.init(this.onBarcodeScanned)
+this.$barcodeScanner.init(callbackFunction)
 ```
 
 ### destroy
@@ -50,13 +50,13 @@ this.$barcodeScanner.destroy()
 ```
 ----------------------------------------
 ## Usage
-In your component file (.vue)
+In your component file (.vue) just for the component you need to listener for barcode
 
 ```javascript
   export default {
     created () {
       // Add barcode scan listener and pass the callback function
-      this.$barcodeScanner.init(callbackFunction)
+      this.$barcodeScanner.init(this.onBarcodeScanned)
     },
     destroyed () {
       // Remove listener when component is destroyed
