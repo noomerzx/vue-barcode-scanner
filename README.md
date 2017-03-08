@@ -5,7 +5,7 @@ Barcode Scanner Plugin for Vue.js
 * vue
 ----------------------------------------
 ## Initiate
-Inject plugin to your vue instance by ```Vue.use``` then using it in your component that need to use barcode scanner
+Inject plugin to your vue instance by ```Vue.use``` then initial it in your component that need to use barcode scanner
 
 ```javascript
 import Vue from 'vue'
