@@ -4,6 +4,7 @@
 
 ## Features
 Usually in the market have a lot of barcode scanner. So we need to handle a lot of things to make this input right as it was for all scanner.
+
 ### What's the problem
 * The listener will alway trigger for each charactor input, So we need to put it together and check when it's finished and ready to use.
 * Need to handle some special charactors for some scanner, Because it's not the same for all scanner.
