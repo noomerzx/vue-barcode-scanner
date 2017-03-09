@@ -11,9 +11,11 @@ Usually in the market have a lot of barcode scanner. So we need to handle a lot 
 ### What this plugin do for you
 * Handle the listener for you and return the ready barcode to your callback just once when scanning is finished.
 * Handle special charactors and return the complete barcode to you.
+
 ----------------------------------------
 ## Dependencies
 * vue
+
 ----------------------------------------
 ## Initiate
 Inject plugin to your vue instance by ```Vue.use``` then initial it in your component that need to use barcode scanner
