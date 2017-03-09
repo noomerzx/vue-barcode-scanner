@@ -18,6 +18,14 @@ Usually in the market have a lot of barcode scanner. So we need to handle a lot 
 * vue
 
 ----------------------------------------
+# Installation
+Install via npm
+
+```javascript
+npm install vue-barcode-scanner
+
+...
+----------------------------------------
 ## Initiate
 Inject plugin to your vue instance by ```Vue.use``` then initial it in your component that need to use barcode scanner
 
