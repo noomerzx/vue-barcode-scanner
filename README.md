@@ -56,7 +56,7 @@ this.$barcodeScanner.init(callbackFunction)
 ```
 
 ### destroy
-Destroy method is for remove the listener when it's unnessessary
+Destroy method is for remove the listener when it's unnecessary
 
 ```javascript
 this.$barcodeScanner.destroy()
