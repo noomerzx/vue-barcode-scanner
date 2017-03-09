@@ -1,7 +1,16 @@
 # Vue Barcode Scanner
 ============
-Barcode Scanner Plugin for Vue.js
-## Requirement
+> Barcode Scanner Plugin for Vue.js
+## Features
+Usually in the market have a lot of barcode scanner. So we need to handle a lot of things to make this input right as it was for all scanner.
+### What's the problem
+* The listener will alway trigger for each charactor input, So we need to put it together and check when it's finished and ready to use.
+* Need to handle some special charactors for some scanner, Because it's not the same for all scanner.
+### What this plugin do for you
+* Handle the listener for you and return the ready barcode to your callback just once when scanning is finished.
+* Handle special charactors and return the complete barcode to you.
+----------------------------------------
+## Dependencies
 * vue
 ----------------------------------------
 ## Initiate
