@@ -1,6 +1,7 @@
 # Vue Barcode Scanner
 ============
 > Barcode Scanner Plugin for Vue.js
+
 ## Features
 Usually in the market have a lot of barcode scanner. So we need to handle a lot of things to make this input right as it was for all scanner.
 ### What's the problem
