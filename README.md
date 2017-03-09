@@ -60,6 +60,13 @@ Destroy method is for remove the listener when it's unnessessary
 ```javascript
 this.$barcodeScanner.destroy()
 ```
+
+### hasListener
+Return the value that curently has a listener or not
+
+```javascript
+this.$barcodeScanner.hasListenr() // return Boolean
+```
 ----------------------------------------
 ## Usage
 In your component file (.vue) just for the component you need to listener for barcode

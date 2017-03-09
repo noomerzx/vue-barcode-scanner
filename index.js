@@ -8,7 +8,8 @@ const VueBarcodeScanner = {
         sound: false,
         soundSrc: ''
       },
-      callback: null
+      callback: null,
+      hasListener: false
     }
 
     // initial plugin setting
@@ -21,14 +22,32 @@ const VueBarcodeScanner = {
 
     Vue.prototype.$barcodeScanner.init = (callback) => {
       // add listenter for scanner
-      console.log('Vue barcode scanner is ready !!')
+      addListener('keydown')
       attributes.callback = callback
-      window.addEventListener('keydown', onInputScanned)
     }
 
     Vue.prototype.$barcodeScanner.destroy = () => {
       // remove listener
-      window.removeEventListener('keydown', onInputScanned)
+      removeListener('keydown')
+    }
+
+    Vue.prototype.$barcodeScanner.hasListener = () => {
+      return attributes.hasListener
+    }
+
+    function addListener (type) {
+      if (attributes.hasListener) {
+        removeListener(type)
+      }
+      window.addEventListener(type, onInputScanned)
+      attributes.hasListener = true
+    }
+
+    function removeListener (type) {
+      if (attributes.hasListener) {
+        window.removeEventListener(type, onInputScanned)
+        attributes.hasListener = false
+      }
     }
 
     function onInputScanned (event) {
