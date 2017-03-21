@@ -78,7 +78,7 @@ Return the value that curently has a listener or not.
 this.$barcodeScanner.hasListenr() // return Boolean
 ```
 
-### getBarcode
+### getPreviousCode
 Return last barcode scanned whatever your input is (In textbox currently).
 The last barcode will be replace when hit enter key.
 
