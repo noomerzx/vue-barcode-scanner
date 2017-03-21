@@ -104,6 +104,11 @@ In your component file (.vue) just for the component you need to listener for ba
       onBarcodeScanned (barcode) {
         console.log(barcode)
         // do something...
+      },
+      // Reset to the last barcode before hitting enter (whatever anythings in the input box)
+      resetBarcode () {
+        let barcode = this.$barcodeScanner.getPreviousCode()
+        // do something...
       }
     }
   }
