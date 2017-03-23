@@ -83,7 +83,7 @@ Return last barcode scanned whatever your input is (In textbox currently).
 The last barcode will be replace when hit enter key.
 
 ```javascript
-this.$barcodeScanner.getBarcode() // return String
+this.$barcodeScanner.getPreviousCode() // return String
 ```
 ----------------------------------------
 ## Usage
