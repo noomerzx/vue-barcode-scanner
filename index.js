@@ -3,8 +3,6 @@ const VueBarcodeScanner = {
     /* global Audio */
     // default plugin setting
     let attributes = {
-      previousCode: '',
-      tempCode: '',
       barcode: '',
       setting: {
         sound: false,
@@ -24,21 +22,17 @@ const VueBarcodeScanner = {
 
     Vue.prototype.$barcodeScanner.init = (callback) => {
       // add listenter for scanner
-      addListener('keydown')
+      addListener('keypress')
       attributes.callback = callback
     }
 
     Vue.prototype.$barcodeScanner.destroy = () => {
       // remove listener
-      removeListener('keydown')
+      removeListener('keypress')
     }
 
     Vue.prototype.$barcodeScanner.hasListener = () => {
       return attributes.hasListener
-    }
-
-    Vue.prototype.$barcodeScanner.getPreviousCode = () => {
-      return attributes.previousCode
     }
 
     function addListener (type) {
@@ -61,21 +55,14 @@ const VueBarcodeScanner = {
         // if input text not on focus scanner will not allow to scan
         event.preventDefault()
       } else if (event.keyCode === 13 && attributes.barcode !== '') {
-        // scanner is done and trigger "Enter" then clear barcode
-        // before clear current code, back it up to previous code and temp code for editable
-        // play the sound if it's set to true
+        // scanner is done and trigger "Enter" then clear barcode and play the sound if it's set as true
         attributes.callback(attributes.barcode)
-        attributes.previousCode = attributes.barcode
-        attributes.tempCode = attributes.barcode
+        // clear textbox
         attributes.barcode = ''
+        document.activeElement.value = ''
         if (attributes.setting.sound) {
           triggerSound()
         }
-      } else if (event.keyCode === 8 && attributes.tempCode !== '') {
-        // when enter backspace to edit barcode, Get the last code from temp and trim the last char
-        // then set it to current code
-        attributes.tempCode = attributes.tempCode.substring(0, attributes.tempCode.length - 1)
-        attributes.barcode = attributes.tempCode
       } else {
         // scan and validate each charactor
         attributes.barcode += validateInput(event.keyCode)
@@ -85,10 +72,10 @@ const VueBarcodeScanner = {
     // validate each input for special charactor
     function validateInput (input) {
       let inputChar = ''
-      switch (input) {
-        case 8: inputChar = ''; break
-        case 189: inputChar = '-'; break
-        default: inputChar = String.fromCharCode(input); break
+      if (input === 45) {
+        inputChar = '-'
+      } else if ((input >= 48 && input <=57) || (input >= 65 && input <= 90) || (input >= 97 && input <= 122)) {
+        inputChar = String.fromCharCode(input)
       }
       return inputChar
     }
