@@ -12,7 +12,6 @@ Usually in the market have a lot of barcode scanner. So we need to handle a lot 
 ### What this plugin do for you
 * Handle the listener for you and return the ready barcode to your callback just once when scanning is finished.
 * Handle special charactors and return the complete barcode to you.
-* Handle when user edit the code themselve by type backspace key then enter the plugin will return the correct code to you callback.
 
 ----------------------------------------
 ## Dependencies

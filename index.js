@@ -3,6 +3,7 @@ const VueBarcodeScanner = {
     /* global Audio */
     // default plugin setting
     let attributes = {
+      previouseCode: '',
       barcode: '',
       setting: {
         sound: false,
@@ -35,6 +36,10 @@ const VueBarcodeScanner = {
       return attributes.hasListener
     }
 
+    Vue.prototype.$barcodeScanner.getPreviousCode = () => {
+       return attributes.previousCode
+    }
+
     function addListener (type) {
       if (attributes.hasListener) {
         removeListener(type)
@@ -57,6 +62,8 @@ const VueBarcodeScanner = {
       } else if (event.keyCode === 13 && attributes.barcode !== '') {
         // scanner is done and trigger "Enter" then clear barcode and play the sound if it's set as true
         attributes.callback(attributes.barcode)
+        // backup the barcode
+        attributes.previousCode = attributes.barcode
         // clear textbox
         attributes.barcode = ''
         document.activeElement.value = ''
