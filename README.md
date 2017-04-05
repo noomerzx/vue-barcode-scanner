@@ -13,6 +13,12 @@ Usually in the market have a lot of barcode scanner. So we need to handle a lot 
 * Handle the listener for you and return the ready barcode to your callback just once when scanning is finished.
 * Handle special charactors and return the complete barcode to you.
 
+### Update
+* Listener for keypress instead of keydown (0.2)
+* New method to get previous barcode (0.2)
+* Listen to for all keypress not only textbox or textarea like previous version (0.3)
+* Check the input is come from barcode scanner by check elapsed time less than 500ms (0.3)
+
 ----------------------------------------
 ## Dependencies
 * vue
@@ -57,7 +63,7 @@ Vue.use(VueBarcodeScanner, options)
 ----------------------------------------
 ## Methods
 ### init
-Init method use for add event listener (keydown) for the scanner.
+Init method use for add event listener (keypress) for the scanner.
 
 ```javascript
 this.$barcodeScanner.init(callbackFunction)
