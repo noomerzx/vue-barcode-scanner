@@ -11,7 +11,7 @@ const VueBarcodeScanner = {
       },
       callback: null,
       hasListener: false,
-      pressed: false
+      pressedTime: []
     }
 
     // initial plugin setting
@@ -61,21 +61,37 @@ const VueBarcodeScanner = {
       //   // if input text not on focus scanner will not allow to scan
       //   event.preventDefault()
       // } else
-      if (event.keyCode === 13 && attributes.barcode !== '') {
-        // scanner is done and trigger "Enter" then clear barcode and play the sound if it's set as true
-        attributes.callback(attributes.barcode)
-        // backup the barcode
-        attributes.previousCode = attributes.barcode
-        // clear textbox
-        attributes.barcode = ''
-        // document.activeElement.value = ''
-        if (attributes.setting.sound) {
-          triggerSound()
+
+      if (checkInputElapsedTime(Date.now())) {
+        if (event.keyCode === 13 && attributes.barcode !== '') {
+          // scanner is done and trigger "Enter" then clear barcode and play the sound if it's set as true
+          attributes.callback(attributes.barcode)
+          // backup the barcode
+          attributes.previousCode = attributes.barcode
+          // clear textbox
+          attributes.barcode = ''
+          // document.activeElement.value = ''
+          if (attributes.setting.sound) {
+            triggerSound()
+          }
+        } else {
+          // scan and validate each charactor
+          attributes.barcode += validateInput(event.keyCode)
         }
-      } else {
-        // scan and validate each charactor
-        attributes.barcode += validateInput(event.keyCode)
       }
+    }
+
+    function checkInputElapsedTime (timestamp) {
+      pressedTime.push(timestamp)
+      if (pressedTime.length === 2) {
+        let timeElapsed = pressedTime[1] - pressedTime[0];
+        pressedTime = []
+        if (timeElapsed >= 500) {
+          attributes.barcode = ''
+          return false
+        }
+      }
+      return true
     }
 
     // validate each input for special charactor
