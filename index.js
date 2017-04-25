@@ -82,11 +82,11 @@ const VueBarcodeScanner = {
     }
 
     function checkInputElapsedTime (timestamp) {
-      pressedTime.push(timestamp)
-      if (pressedTime.length === 2) {
-        let timeElapsed = pressedTime[1] - pressedTime[0];
-        pressedTime = []
-        if (timeElapsed >= 500) {
+      attributes.pressedTime.push(timestamp)
+      if (attributes.pressedTime.length === 2) {
+        let timeElapsed = attributes.pressedTime[1] - attributes.pressedTime[0];
+        attributes.pressedTime = []
+        if (timeElapsed >= 100) {
           attributes.barcode = ''
           return false
         }
