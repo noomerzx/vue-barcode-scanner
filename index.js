@@ -70,6 +70,8 @@ const VueBarcodeScanner = {
           attributes.previousCode = attributes.barcode
           // clear textbox
           attributes.barcode = ''
+          // clear pressedTime
+          attributes.pressedTime = []
           // document.activeElement.value = ''
           if (attributes.setting.sound) {
             triggerSound()
