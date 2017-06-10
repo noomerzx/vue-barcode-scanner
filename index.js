@@ -24,13 +24,17 @@ const VueBarcodeScanner = {
 
     Vue.prototype.$barcodeScanner.init = (callback) => {
       // add listenter for scanner
+      // use keypress to separate lower/upper case character from scanner
       addListener('keypress')
+      // use keyup only to detect Tab event (Tab cannot be detected using keypress)
+      addListener('keyup')
       attributes.callback = callback
     }
 
     Vue.prototype.$barcodeScanner.destroy = () => {
       // remove listener
       removeListener('keypress')
+      removeListener('keyup')
     }
 
     Vue.prototype.$barcodeScanner.hasListener = () => {
@@ -62,8 +66,14 @@ const VueBarcodeScanner = {
       //   event.preventDefault()
       // } else
 
+      console.log(event);
+      // ignore other keyup event that is not a TAB
+      if (event.type === 'keyup' && event.keyCode != 9) {
+        return
+      }
+
       if (checkInputElapsedTime(Date.now())) {
-        if (event.keyCode === 13 && attributes.barcode !== '') {
+        if ((event.keyCode === 13 || checkTab(event)) && attributes.barcode !== '') {
           // scanner is done and trigger "Enter" then clear barcode and play the sound if it's set as true
           attributes.callback(attributes.barcode)
           // backup the barcode
@@ -81,6 +91,15 @@ const VueBarcodeScanner = {
       }
     }
 
+    function checkTab(event) {
+      let isTab = event.type == 'keyup' && event.keyCode === 9
+      if (isTab) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      return isTab
+    }
+
     function checkInputElapsedTime (timestamp) {
       attributes.pressedTime.push(timestamp)
       if (attributes.pressedTime.length === 2) {
@@ -91,6 +110,7 @@ const VueBarcodeScanner = {
           return false
         }
       }
+      // not able to check (has < 2 timestamp in register)
       return true
     }
 
