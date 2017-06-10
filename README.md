@@ -6,12 +6,12 @@
 Usually in the market have a lot of barcode scanner. So we need to handle a lot of things to make this input right as it was for all scanner.
 
 ### What's the problem
-* The listener will alway trigger for each charactor input, So we need to put it together and check when it's finished and ready to use.
-* Need to handle some special charactors for some scanner, Because it's not the same for all scanner.
+* The listener will alway trigger for each character input, So we need to put it together and check when it's finished and ready to use.
+* Need to handle some special characters for some scanner, Because it's not the same for all scanner.
 
 ### What this plugin do for you
 * Handle the listener for you and return the ready barcode to your callback just once when scanning is finished.
-* Handle special charactors and return the complete barcode to you.
+* Handle special characters and return the complete barcode to you.
 
 ### Update
 * Listener for keypress instead of keydown (0.2)
@@ -77,10 +77,10 @@ this.$barcodeScanner.destroy()
 ```
 
 ### hasListener
-Return the value that curently has a listener or not.
+Return the value that currently has a listener or not.
 
 ```javascript
-this.$barcodeScanner.hasListenr() // return Boolean
+this.$barcodeScanner.hasListener() // return Boolean
 ```
 
 ### getPreviousCode
@@ -105,12 +105,12 @@ In your component file (.vue) just for the component you need to listener for ba
       this.$barcodeScanner.destroy()
     },
     methods: {
-      // Create callback function to received barcode when the scanner is already done
+      // Create callback function to receive barcode when the scanner is already done
       onBarcodeScanned (barcode) {
         console.log(barcode)
         // do something...
       },
-      // Reset to the last barcode before hitting enter (whatever anythings in the input box)
+      // Reset to the last barcode before hitting enter (whatever anything in the input box)
       resetBarcode () {
         let barcode = this.$barcodeScanner.getPreviousCode()
         // do something...

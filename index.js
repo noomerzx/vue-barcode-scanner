@@ -61,20 +61,14 @@ const VueBarcodeScanner = {
     }
 
     function onInputScanned (event) {
-      // if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-      //   // if input text not on focus scanner will not allow to scan
-      //   event.preventDefault()
-      // } else
-
-      // ignore other keyup event that is not a TAB, so there are no duplicate keyevents
+      // ignore other keyup event that is not a TAB, so there are no duplicate keys
       if (event.type === 'keyup' && event.keyCode != 9) {
         return
       }
-      console.log(event);
 
       if (checkInputElapsedTime(Date.now())) {
         if ((event.keyCode === 13 || event.keyCode === 9) && attributes.barcode !== '') {
-          // scanner is done and trigger "Enter" then clear barcode and play the sound if it's set as true
+          // scanner is done and trigger Enter/Tab then clear barcode and play the sound if it's set as true
           attributes.callback(attributes.barcode)
           // backup the barcode
           attributes.previousCode = attributes.barcode
@@ -91,6 +85,7 @@ const VueBarcodeScanner = {
       }
     }
 
+    // check whether the keystrokes are considered as scanner or human
     function checkInputElapsedTime (timestamp) {
       // push current timestamp to the register
       attributes.pressedTime.push(timestamp)
@@ -113,21 +108,9 @@ const VueBarcodeScanner = {
           attributes.pressedTime = []
         }
       }
-      // not able to check (register is empty before pushing)
-      // or assumed as scanner
+      // not able to check (register is empty before pushing) or assumed as scanner
       return true
     }
-
-    // validate each input for special charactor
-    // function validateInput (input) {
-    //   let inputChar = ''
-    //   if (input === 45) {
-    //     inputChar = '-'
-    //   } else if ((input >= 48 && input <=57) || (input >= 65 && input <= 90) || (input >= 97 && input <= 122)) {
-    //     inputChar = String.fromCharCode(input)
-    //   }
-    //   return inputChar
-    // }
 
     // init audio and play
     function triggerSound () {
