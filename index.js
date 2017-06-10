@@ -96,16 +96,29 @@ const VueBarcodeScanner = {
     }
 
     function checkInputElapsedTime (timestamp) {
+      // push current timestamp to the register
       attributes.pressedTime.push(timestamp)
+      // when register is full (ready to compare)
       if (attributes.pressedTime.length === 2) {
+        // compute elapsed time between 2 keystrokes
         let timeElapsed = attributes.pressedTime[1] - attributes.pressedTime[0];
-        attributes.pressedTime = []
+        // too slow (assume as human)
         if (timeElapsed >= 100) {
-          attributes.barcode = ''
+          // put latest key char into barcode
+          attributes.barcode = event.key
+          // remove(shift) first timestamp in register
+          attributes.pressedTime.shift()
+          // not fast enough
           return false
         }
+        // fast enough (assume as scanner)
+        else {
+          // reset the register
+          attributes.pressedTime = []
+        }
       }
-      // not able to check (has < 2 timestamp in register)
+      // not able to check (register is empty before pushing)
+      // or assumed as scanner
       return true
     }
 
