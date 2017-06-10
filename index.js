@@ -66,14 +66,14 @@ const VueBarcodeScanner = {
       //   event.preventDefault()
       // } else
 
-      console.log(event);
-      // ignore other keyup event that is not a TAB
+      // ignore other keyup event that is not a TAB, so there are no duplicate keyevents
       if (event.type === 'keyup' && event.keyCode != 9) {
         return
       }
+      console.log(event);
 
       if (checkInputElapsedTime(Date.now())) {
-        if ((event.keyCode === 13 || checkTab(event)) && attributes.barcode !== '') {
+        if ((event.keyCode === 13 || isTab(event)) && attributes.barcode !== '') {
           // scanner is done and trigger "Enter" then clear barcode and play the sound if it's set as true
           attributes.callback(attributes.barcode)
           // backup the barcode
@@ -86,18 +86,13 @@ const VueBarcodeScanner = {
           }
         } else {
           // scan and validate each charactor
-          attributes.barcode += validateInput(event.keyCode)
+          attributes.barcode += event.key
         }
       }
     }
 
-    function checkTab(event) {
-      let isTab = event.type == 'keyup' && event.keyCode === 9
-      if (isTab) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-      return isTab
+    function isTab(event) {
+      return event.type == 'keyup' && event.keyCode === 9
     }
 
     function checkInputElapsedTime (timestamp) {
@@ -115,15 +110,15 @@ const VueBarcodeScanner = {
     }
 
     // validate each input for special charactor
-    function validateInput (input) {
-      let inputChar = ''
-      if (input === 45) {
-        inputChar = '-'
-      } else if ((input >= 48 && input <=57) || (input >= 65 && input <= 90) || (input >= 97 && input <= 122)) {
-        inputChar = String.fromCharCode(input)
-      }
-      return inputChar
-    }
+    // function validateInput (input) {
+    //   let inputChar = ''
+    //   if (input === 45) {
+    //     inputChar = '-'
+    //   } else if ((input >= 48 && input <=57) || (input >= 65 && input <= 90) || (input >= 97 && input <= 122)) {
+    //     inputChar = String.fromCharCode(input)
+    //   }
+    //   return inputChar
+    // }
 
     // init audio and play
     function triggerSound () {
