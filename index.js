@@ -73,7 +73,7 @@ const VueBarcodeScanner = {
       console.log(event);
 
       if (checkInputElapsedTime(Date.now())) {
-        if ((event.keyCode === 13 || isTab(event)) && attributes.barcode !== '') {
+        if ((event.keyCode === 13 || event.keyCode === 9) && attributes.barcode !== '') {
           // scanner is done and trigger "Enter" then clear barcode and play the sound if it's set as true
           attributes.callback(attributes.barcode)
           // backup the barcode
@@ -91,10 +91,6 @@ const VueBarcodeScanner = {
       }
     }
 
-    function isTab(event) {
-      return event.type == 'keyup' && event.keyCode === 9
-    }
-
     function checkInputElapsedTime (timestamp) {
       // push current timestamp to the register
       attributes.pressedTime.push(timestamp)
@@ -103,7 +99,7 @@ const VueBarcodeScanner = {
         // compute elapsed time between 2 keystrokes
         let timeElapsed = attributes.pressedTime[1] - attributes.pressedTime[0];
         // too slow (assume as human)
-        if (timeElapsed >= 100) {
+        if (timeElapsed >= 50) {
           // put latest key char into barcode
           attributes.barcode = event.key
           // remove(shift) first timestamp in register
