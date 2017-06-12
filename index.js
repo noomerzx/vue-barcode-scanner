@@ -74,6 +74,8 @@ const VueBarcodeScanner = {
           attributes.previousCode = attributes.barcode
           // clear textbox
           attributes.barcode = ''
+          // clear pressedTime
+          attributes.pressedTime = []
           // trigger sound
           if (attributes.setting.sound) {
             triggerSound()
@@ -98,7 +100,7 @@ const VueBarcodeScanner = {
         // compute elapsed time between 2 keystrokes
         let timeElapsed = attributes.pressedTime[1] - attributes.pressedTime[0];
         // too slow (assume as human)
-        if (timeElapsed >= 50) {
+        if (timeElapsed >= 30) {
           // put latest key char into barcode
           attributes.barcode = event.key
           // remove(shift) first timestamp in register
