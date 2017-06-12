@@ -85,7 +85,6 @@ const VueBarcodeScanner = {
         } else {
           // scan and validate each charactor
           attributes.barcode += event.key
-          console.log(event)
         }
       }
     }
