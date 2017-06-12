@@ -19,6 +19,9 @@ Usually in the market have a lot of barcode scanner. So we need to handle a lot 
 * New method to get previous barcode (0.2)
 * Listen to for all keypress not only textbox or textarea like previous version (0.3)
 * Check the input is come from barcode scanner by check elapsed time less than 500ms (0.3)
+* Support scanner that use "TAB" instead of "Enter" in the last scanned charactor (adding keydown event) (0.4)
+* Clear elapsed time when submit the barcode (0.4)
+* Change by pass elapsed time from 500ms to 30ms and change the logic to make scanner detection better (0.4)
 
 ----------------------------------------
 ## Dependencies
