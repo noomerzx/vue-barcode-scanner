@@ -13,7 +13,6 @@ Usually in the market have a lot of barcode scanner. So we need to handle a lot 
 * Handle special characters and return the complete barcode to you.
 
 ### Update
-* Add barcode recognition sensitivity setting
 * Tab suffix barcode scanner compatibility
 * Listener for keypress instead of keydown (0.2)
 * New method to get previous barcode (0.2)
@@ -22,6 +21,8 @@ Usually in the market have a lot of barcode scanner. So we need to handle a lot 
 * Support scanner that use "TAB" instead of "Enter" in the last scanned charactor (adding keydown event) (0.4)
 * Clear elapsed time when submit the barcode (0.4)
 * Change by pass elapsed time from 500ms to 30ms and change the logic to make scanner detection better (0.4)
+* Options to set scan sensitivity (it's elapsed time for each key scanned, default 100ms) (0.5)
+* New method to set scan sensitivity manually (0.5)
 
 ----------------------------------------
 ## Dependencies
@@ -99,6 +100,7 @@ this.$barcodeScanner.getPreviousCode() // return String
 ### setSensitivity
 Set limit of the time elapsed between each key stroke to distinguish between human typing and barcode scanner.
 Barcode scanner is determined by how fast between each key stoke.
+Argument is number of milliseconds.
 
 ```javascript
 this.$barcodeScanner.setSensitivity(200) // sets barcode scanner recognition sensitivity to 200 ms

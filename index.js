@@ -8,7 +8,7 @@ const VueBarcodeScanner = {
       setting: {
         sound: false,
         soundSrc: '',
-        sensitivity: 100
+        scannerSensitivity: 100
       },
       callback: null,
       hasListener: false,
@@ -17,9 +17,9 @@ const VueBarcodeScanner = {
 
     // initial plugin setting
     if (options) {
-      attributes.setting.sound = options.sound
-      attributes.setting.soundSrc = options.soundSrc
-      attributes.setting.sensitivity = options.sensitivity || attributes.setting.sensitivity
+      attributes.setting.sound = options.sound || attributes.setting.sound
+      attributes.setting.soundSrc = options.soundSrc || attributes.setting.soundSrc
+      attributes.setting.scannerSensitivity = options.sensitivity || attributes.setting.scannerSensitivity
     }
 
     Vue.prototype.$barcodeScanner = {}
@@ -48,7 +48,7 @@ const VueBarcodeScanner = {
     }
 
     Vue.prototype.$barcodeScanner.setSensitivity = (sensitivity) => {
-      attributes.setting.sensitivity = sensitivity
+      attributes.setting.scannerSensitivity = sensitivity
     }
 
     function addListener (type) {
@@ -106,7 +106,7 @@ const VueBarcodeScanner = {
         // compute elapsed time between 2 keystrokes
         let timeElapsed = attributes.pressedTime[1] - attributes.pressedTime[0];
         // too slow (assume as human)
-        if (timeElapsed >= attributes.setting.sensitivity) {
+        if (timeElapsed >= attributes.setting.scannerSensitivity) {
           // put latest key char into barcode
           attributes.barcode = event.key
           // remove(shift) first timestamp in register
