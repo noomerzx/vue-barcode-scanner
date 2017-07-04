@@ -14,6 +14,7 @@ Usually in the market have a lot of barcode scanner. So we need to handle a lot 
 * Handle special characters and return the complete barcode to you.
 
 ### Update
+* Add barcode recognition sensitivity setting
 * Tab suffix barcode scanner compatibility
 * Listener for keypress instead of keydown (0.2)
 * New method to get previous barcode (0.2)
@@ -55,7 +56,8 @@ Inject with option
 // sound will trigger when it's already scanned
 let options = {
   sound: true, // default is false
-  soundSrc : '/static/sound.wav' // default is blank
+  soundSrc: '/static/sound.wav' // default is blank
+  sensitivity: 300 // default is 100
 }
 
 Vue.use(VueBarcodeScanner, options)
@@ -90,6 +92,14 @@ The last barcode will be replace when hit enter key.
 
 ```javascript
 this.$barcodeScanner.getPreviousCode() // return String
+```
+
+### setSensitivity
+Set limit of the time elapsed between each key stroke to distinguish between human typing and barcode scanner.
+Barcode scanner is determined by how fast between each key stoke.
+
+```javascript
+this.$barcodeScanner.setSensitivity(200) // sets barcode scanner recognition sensitivity to 200 ms
 ```
 ----------------------------------------
 ## Usage
