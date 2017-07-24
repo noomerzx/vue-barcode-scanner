@@ -1,6 +1,6 @@
 {
   "name": "vue-barcode-scanner",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Barcode Scanner Plugin for Vue.js",
   "main": "index.js",
   "scripts": {
