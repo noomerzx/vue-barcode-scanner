@@ -4,6 +4,10 @@
 ## Features
 Usually in the market have a lot of barcode scanner. So we need to handle a lot of things to make this input right as it was for all scanner.
 
+This plugin allows for better control of scanning inputs as speed of scanners lead to noisy and innacurate results. This plugin will allow you to use your **already** implemented barcode scanner in your project with better control and accuracy.
+
+vue-barcode-scanner is a throttle for existing barcode scanners such as https://github.com/serratus/quaggaJS or https://github.com/hypery2k/cordova-barcodescanner-plugin/. vue-barcode-scanner is not a scanning tool on its own.
+
 ### What's the problem
 * The listener will alway trigger for each character input, So we need to put it together and check when it's finished and ready to use.
 * Need to handle some special characters for some scanner, Because it's not the same for all scanner.
@@ -133,3 +137,7 @@ In your component file (.vue) just for the component you need to listener for ba
     }
   }
 ```
+
+# Disclaimer
+
+This is **NOT** a barcode scanner. This is a scanner throttle to reduce innacurate scanner inputs.
