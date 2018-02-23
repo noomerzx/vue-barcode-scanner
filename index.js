@@ -8,7 +8,8 @@ const VueBarcodeScanner = {
       setting: {
         sound: false,
         soundSrc: '',
-        scannerSensitivity: 100
+        scannerSensitivity: 100,
+        requiredAttr: false
       },
       callback: null,
       hasListener: false,
@@ -17,6 +18,7 @@ const VueBarcodeScanner = {
 
     // initial plugin setting
     if (options) {
+      attributes.setting.requiredAttr = options.requiredAttr || false
       attributes.setting.sound = options.sound || attributes.setting.sound
       attributes.setting.soundSrc = options.soundSrc || attributes.setting.soundSrc
       attributes.setting.scannerSensitivity = options.sensitivity || attributes.setting.scannerSensitivity
@@ -74,7 +76,12 @@ const VueBarcodeScanner = {
 
       if (checkInputElapsedTime(Date.now())) {
         // check if field has 'data-barcode' attribute
-        let barcodeIdentifier = event.target.attributes.getNamedItem('data-barcode');
+        let isBarcodeIdentifier = false
+        if (attributes.setting.requiredAttr) {
+          barcodeIdentifier = event.target.attributes.getNamedItem('data-barcode');
+        } else {
+          barcodeIdentifier = true
+        }
         if (barcodeIdentifier && (event.keyCode === 13 || event.keyCode === 9) && attributes.barcode !== '') {
           // scanner is done and trigger Enter/Tab then clear barcode and play the sound if it's set as true
           attributes.callback(attributes.barcode)

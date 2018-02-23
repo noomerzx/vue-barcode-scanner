@@ -27,6 +27,7 @@ vue-barcode-scanner is a throttle for existing barcode scanners such as https://
 * Change by pass elapsed time from 500ms to 30ms and change the logic to make scanner detection better (0.4)
 * Options to set scan sensitivity (it's elapsed time for each key scanned, default 100ms) (0.5)
 * New method to set scan sensitivity manually (0.5)
+* New option to require 'data-barcode' attribute for specific field input (0.6)
 
 ----------------------------------------
 ## Dependencies
@@ -63,13 +64,16 @@ Inject with option
 // sound will trigger when it's already scanned
 let options = {
   sound: true, // default is false
-  soundSrc: '/static/sound.wav' // default is blank
-  sensitivity: 300 // default is 100
+  soundSrc: '/static/sound.wav', // default is blank
+  sensitivity: 300, // default is 100
+  requiredAttr: true // default is false
 }
 
 Vue.use(VueBarcodeScanner, options)
 
 ```
+
+* Please note that if "requiredAttr" set to "true" you need to specific some input field with "data-barcode" and then only this input response to scanner
 ----------------------------------------
 ## Methods
 ### init
