@@ -76,7 +76,7 @@ const VueBarcodeScanner = {
 
       if (checkInputElapsedTime(Date.now())) {
         // check if field has 'data-barcode' attribute
-        let isBarcodeIdentifier = false
+        let barcodeIdentifier = false
         if (attributes.setting.requiredAttr) {
           barcodeIdentifier = event.target.attributes.getNamedItem('data-barcode');
         } else {
