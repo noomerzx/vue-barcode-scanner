@@ -67,13 +67,7 @@ let options = {
   soundSrc: '/static/sound.wav', // default is blank
   sensitivity: 300, // default is 100
   requiredAttr: true, // default is false
-  // when a control key in this list is encountered in a scan sequence,
-  // it will be replaced with <VControlSequence> tags for easy string replacement
   controlSequenceKeys: ['NumLock', 'Clear'], // default is null
-  // this will fire the callback defined in the component once
-  // `sensitivity` ms has elapsed after the last character in the
-  // sequence is sent from the scanner. 
-  // useful for scanners that don't end their sequenced with ENTER
   callbackAfterTimeout: true // default is false
 }
 
@@ -82,6 +76,8 @@ Vue.use(VueBarcodeScanner, options)
 ```
 
 * Please note that if "requiredAttr" set to "true" you need to specific some input field with "data-barcode" and then only this input response to scanner
+* `controlSequenceKeys`:  when a control key in this list is encountered in a scan sequence, it will be replaced with <VControlSequence> tags for easy string replacement
+* `callbackAfterTimeout`: this will fire the callback defined in the component once `sensitivity` ms has elapsed, following the last character in the barcode sequence. This is useful for scanners that don't end their sequences with ENTER and is backwards compatible with scanners that do.
 ----------------------------------------
 ## Methods
 ### init
@@ -151,7 +147,7 @@ In your component file (.vue) just for the component you need to listener for ba
     }
   }
 ```
-### Advanced
+### Advanced (using eventBus)
 ```javascript
   export default {
     data: () => ({
