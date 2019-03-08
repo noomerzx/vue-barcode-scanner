@@ -67,9 +67,14 @@ let options = {
   soundSrc: '/static/sound.wav', // default is blank
   sensitivity: 300, // default is 100
   requiredAttr: true, // default is false
-  controlSequenceKeys: ['NumLock', 'Clear'] // default is null
   // when a control key in this list is encountered in a scan sequence,
   // it will be replaced with <VControlSequence> tags for easy string replacement
+  controlSequenceKeys: ['NumLock', 'Clear'], // default is null
+  // this will fire the callback defined in the component once
+  // `sensitivity` ms has elapsed after the last character in the
+  // sequence is sent from the scanner. 
+  // useful for scanners that don't end their sequenced with ENTER
+  callbackAfterTimeout: true // default is false
 }
 
 Vue.use(VueBarcodeScanner, options)
