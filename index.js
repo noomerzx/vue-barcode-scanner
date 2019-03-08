@@ -63,6 +63,7 @@ const VueBarcodeScanner = {
       attributes.setting.soundSrc = options.soundSrc || attributes.setting.soundSrc
       attributes.setting.scannerSensitivity = options.sensitivity || attributes.setting.scannerSensitivity
       attributes.setting.controlSequenceKeys = options.controlSequenceKeys || null
+      attributes.setting.finishAfterTimeout = options.finishAfterTimeout || false
     }
 
     Vue.prototype.$barcodeScanner = {}
