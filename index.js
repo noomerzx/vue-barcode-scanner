@@ -39,7 +39,7 @@ const VueBarcodeScanner = {
         //   1. Scan barcode
         //   2. Scanner sends sequence of characters to device. Final character is not ENTER
         //   3. After `setting.scannerSensitivity` ms elapses, `callback` is called
-        finishAfterTimeout: false
+        callbackAfterTimeout: false
       },
       callback: null,
       hasListener: false,
@@ -63,7 +63,7 @@ const VueBarcodeScanner = {
       attributes.setting.soundSrc = options.soundSrc || attributes.setting.soundSrc
       attributes.setting.scannerSensitivity = options.sensitivity || attributes.setting.scannerSensitivity
       attributes.setting.controlSequenceKeys = options.controlSequenceKeys || null
-      attributes.setting.finishAfterTimeout = options.finishAfterTimeout || false
+      attributes.setting.callbackAfterTimeout = options.callbackAfterTimeout || false
     }
 
     Vue.prototype.$barcodeScanner = {}
@@ -218,7 +218,7 @@ const VueBarcodeScanner = {
             clearTimeout(attributes.timeout)
           }
           attributes.timeout =
-            attributes.setting.finishAfterTimeout &&
+            attributes.setting.callbackAfterTimeout &&
             setTimeout(finishScanSequence, attributes.setting.scannerSensitivity)
 
           // scan and validate each character
