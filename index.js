@@ -49,7 +49,7 @@ const VueBarcodeScanner = {
 
     Vue.prototype.$barcodeScanner = {}
 
-    Vue.prototype.$barcodeScanner.init = (callback, options) => {
+    Vue.prototype.$barcodeScanner.init = (callback, options = {}) => {
       // add listenter for scanner
       // use keypress to separate lower/upper case character from scanner
       addListener('keypress')
