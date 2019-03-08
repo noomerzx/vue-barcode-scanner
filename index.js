@@ -22,6 +22,24 @@ const VueBarcodeScanner = {
         //
         // this allows easy string replacement
         controlSequenceKeys: null,
+        // Some scanners do not end their sequence with the ENTER key.
+        // This option allows "finishing" the sequence without an ENTER key
+        // after the number of ms defined in `setting.scannerSensitivity`
+        // elapses after the last character in the sequence.
+        // Example:
+        // (without timeout, sequence ends with ENTER):
+        //   1. Scan barcode
+        //   2. Scanner sends sequence of characters to device, ending with ENTER (13) key
+        //   3. `callback` passed in `init()` is called
+        // (without timeout, sequence ends without ENTER):
+        //   1. Scan barcode
+        //   2. Scanner sends sequence of characters to device. Final character is not ENTER
+        //   3. `callback` is not called until the ENTER key is pressed
+        // (with timeout, sequence ends without ENTER):
+        //   1. Scan barcode
+        //   2. Scanner sends sequence of characters to device. Final character is not ENTER
+        //   3. After `setting.scannerSensitivity` ms elapses, `callback` is called
+        finishAfterTimeout: false
       },
       callback: null,
       hasListener: false,
@@ -198,7 +216,9 @@ const VueBarcodeScanner = {
           if (attributes.timeout) {
             clearTimeout(attributes.timeout)
           }
-          attributes.timeout = setTimeout(finishScanSequence, attributes.setting.scannerSensitivity)
+          attributes.timeout =
+            attributes.setting.finishAfterTimeout &&
+            setTimeout(finishScanSequence, attributes.setting.scannerSensitivity)
 
           // scan and validate each character
           attributes.barcode += event.key
