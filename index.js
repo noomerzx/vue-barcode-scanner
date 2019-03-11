@@ -219,6 +219,9 @@ const VueBarcodeScanner = {
           }
           attributes.timeout =
             attributes.setting.callbackAfterTimeout &&
+            // ensure there are characters in the buffer
+            // otherwise, the callback will always fire
+            attributes.barcode.length > 0 &&
             setTimeout(finishScanSequence, attributes.setting.scannerSensitivity)
 
           // scan and validate each character
