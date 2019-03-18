@@ -66,7 +66,9 @@ let options = {
   sound: true, // default is false
   soundSrc: '/static/sound.wav', // default is blank
   sensitivity: 300, // default is 100
-  requiredAttr: true // default is false
+  requiredAttr: true, // default is false
+  controlSequenceKeys: ['NumLock', 'Clear'], // default is null
+  callbackAfterTimeout: true // default is false
 }
 
 Vue.use(VueBarcodeScanner, options)
@@ -74,14 +76,18 @@ Vue.use(VueBarcodeScanner, options)
 ```
 
 * Please note that if "requiredAttr" set to "true" you need to specific some input field with "data-barcode" and then only this input response to scanner
+* `controlSequenceKeys`:  when a control key in this list is encountered in a scan sequence, it will be replaced with <VControlSequence> tags for easy string replacement
+* `callbackAfterTimeout`: this will fire the callback defined in the component once `sensitivity` ms has elapsed, following the last character in the barcode sequence. This is useful for scanners that don't end their sequences with ENTER and is backwards compatible with scanners that do.
 ----------------------------------------
 ## Methods
 ### init
 Init method use for add event listener (keypress) for the scanner.
 
 ```javascript
-this.$barcodeScanner.init(callbackFunction)
+this.$barcodeScanner.init(callbackFunction, options)
 ```
+
+`options` defaults to an empty object, `{}`, and can be safely ignored. See Advanced Usage for an example.
 
 ### destroy
 Destroy method is for remove the listener when it's unnecessary.
@@ -141,6 +147,39 @@ In your component file (.vue) just for the component you need to listener for ba
     }
   }
 ```
+### Advanced (using eventBus)
+```javascript
+  export default {
+    data: () => ({
+      loading: false
+    }),
+    created () {
+      // Pass an options object with `eventBus: true` to receive an eventBus back
+      // which emits `start` and `finish` events
+      const eventBus = this.$barcodeScanner.init(this.onBarcodeScanned, { eventBus: true })
+      if (eventBus) {
+        eventBus.$on('start', () => { this.loading = true })
+        eventBus.$on('finish', () => { this.loading = false })
+      }
+    },
+    destroyed () {
+      // Remove listener when component is destroyed
+      this.$barcodeScanner.destroy()
+    },
+    methods: {
+      // Create callback function to receive barcode when the scanner is already done
+      onBarcodeScanned (barcode) {
+        console.log(barcode)
+        // do something...
+      },
+      // Reset to the last barcode before hitting enter (whatever anything in the input box)
+      resetBarcode () {
+        let barcode = this.$barcodeScanner.getPreviousCode()
+        // do something...
+      }
+    }
+  }
+  ```
 
 # Disclaimer
 
