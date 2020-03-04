@@ -3,7 +3,7 @@ const VueBarcodeScanner = {
     /* global Audio */
     // default plugin setting
     let attributes = {
-      previouseCode: '',
+      previousCode: '',
       barcode: '',
       setting: {
         sound: false,
@@ -181,7 +181,7 @@ const VueBarcodeScanner = {
       const controlRegex = controlSequenceRegex()
 
       // ignore other keydown event that is not a TAB, so there are no duplicate keys
-      if (event.type === 'keydown' && event.keyCode != 9) {
+      if (event.type === 'keydown' && event.keyCode !== 9) {
         // Return early if this is not a control key that should be observed
         if (controlRegex && !controlRegex.test(event.key)) return
         // Return early if no control keys should be observed
@@ -209,7 +209,7 @@ const VueBarcodeScanner = {
           finishScanSequence()
 
           // prevent TAB navigation for scanner
-          if (event.keyCode === 9) {
+          if (event.keyCode === 9 || event.keyCode === 13) {
             event.preventDefault()
           }
         } else {
