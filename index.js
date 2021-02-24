@@ -1,5 +1,5 @@
 const VueBarcodeScanner = {
-  install (Vue, options) {
+  install (vue, options) {
     /* global Audio */
     // default plugin setting
     let attributes = {
@@ -66,9 +66,9 @@ const VueBarcodeScanner = {
       attributes.setting.callbackAfterTimeout = options.callbackAfterTimeout || false
     }
 
-    Vue.prototype.$barcodeScanner = {}
+    vue.config.globalProperties.$barcodeScanner = {}
 
-    Vue.prototype.$barcodeScanner.init = (callback, options = {}) => {
+    vue.config.globalProperties.$barcodeScanner.init = (callback, options = {}) => {
       // add listenter for scanner
       // use keypress to separate lower/upper case character from scanner
       addListener('keypress')
@@ -93,21 +93,21 @@ const VueBarcodeScanner = {
       }
     }
 
-    Vue.prototype.$barcodeScanner.destroy = () => {
+    vue.config.globalProperties.$barcodeScanner.destroy = () => {
       // remove listener
       removeListener('keypress')
       removeListener('keydown')
     }
 
-    Vue.prototype.$barcodeScanner.hasListener = () => {
+    vue.config.globalProperties.$barcodeScanner.hasListener = () => {
       return attributes.hasListener
     }
 
-    Vue.prototype.$barcodeScanner.getPreviousCode = () => {
+    vue.config.globalProperties.$barcodeScanner.getPreviousCode = () => {
       return attributes.previousCode
     }
 
-    Vue.prototype.$barcodeScanner.setSensitivity = (sensitivity) => {
+    vue.config.globalProperties.$barcodeScanner.setSensitivity = (sensitivity) => {
       attributes.setting.scannerSensitivity = sensitivity
     }
 
