@@ -38,7 +38,7 @@ vue-barcode-scanner is a throttle for existing barcode scanners such as https://
 Install via npm
 
 ```javascript
-npm install vue-barcode-scanner
+npm install vue3-barcode-scanner
 ```
 
 ----------------------------------------
