@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/noomerzx/vue-barcode-scanner.git"
+    "url": "git+https://github.com/MatheusNascimentoti99/vue-barcode-scanner.git"
   },
   "author": "Wisarut Phuvanantanond <noomerzx@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/noomerzx/vue-barcode-scanner/issues"
+    "url": "https://github.com/MatheusNascimentoti99/vue-barcode-scanner/issues"
   },
-  "homepage": "https://github.com/noomerzx/vue-barcode-scanner"
+  "homepage": "https://github.com/MatheusNascimentoti99/vue-barcode-scanner.git"
 }
