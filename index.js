@@ -1,6 +1,6 @@
 const VueBarcodeScanner = {
   install (vue, options) {
-    const app = createApp()
+    const app = vue.createApp()
 
     /* global Audio */
     // default plugin setting
